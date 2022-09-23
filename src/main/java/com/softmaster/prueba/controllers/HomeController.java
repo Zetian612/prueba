@@ -13,8 +13,4 @@ public class HomeController {
             return "index";
         }
 
-        @GetMapping("/new")
-        public String newEmployee() {
-            return "new";
-        }
 }

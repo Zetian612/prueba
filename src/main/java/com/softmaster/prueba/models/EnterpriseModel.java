@@ -2,13 +2,9 @@ package com.softmaster.prueba.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,6 +26,16 @@ public class EnterpriseModel {
 
     @Column(length = 150, nullable = false)
     private String phone;
+
+    // relacion con employee
+    // borrado en cascada
+     @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE)
+     private List<EmployeeModel> employees;
+
+    // relacion con movement
+    // borrado en cascada
+     @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE)
+     private List<MovementModel> movements;
 
     // columnas de fecha de creacion y actualizacion
     @Column(name = "created_at")

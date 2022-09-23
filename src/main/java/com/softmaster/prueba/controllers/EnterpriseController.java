@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/enterprise")
+@RequestMapping(method = RequestMethod.GET , value = "/enterprise")
 public class EnterpriseController {
 
     @Autowired
@@ -46,8 +46,10 @@ public class EnterpriseController {
         return service.updateEnterprise(id, enterprise);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteEnterprise(@PathVariable("id") Integer id) {
+    //eliminar empresa
+    @PostMapping("/{id}/delete")
+    public RedirectView deleteEnterprise(@PathVariable Integer id) {
         service.deleteEnterprise(id);
+        return new RedirectView("/enterprise");
     }
 }

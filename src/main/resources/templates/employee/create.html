@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="card card-default mb-3 mt-3 shadow-sm p-3 mb-5 bg-body rounded">
                 <div class="card-body">
-                    <form th:action="@{/enterprise/{id}/employee/create}" th:object="${employees}" method="post">
+                    <form th:action="@{/enterprise/{id}/employees/create(id=${id})}" th:object="${employee}" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="text" name="email" class="form-control" id="email" th:field="*{email}">

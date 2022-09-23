@@ -25,7 +25,7 @@ public class MovementModel {
     @JoinColumn(name = "id_employee", nullable = false)
     private EmployeeModel employee;
 
-    //relacion con enterprise
+    //relacion con enterprise y borrado en cascada
     @ManyToOne
     @JoinColumn(name = "id_enterprise", nullable = false)
     private EnterpriseModel enterprise;

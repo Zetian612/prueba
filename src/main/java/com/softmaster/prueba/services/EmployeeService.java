@@ -20,11 +20,16 @@ public class EmployeeService {
         return repository.findAll();
     }
 
-    public EmployeeModel createEmployee(EmployeeModel employee) {
-        return repository.save(employee);
+    public void createEmployee(Integer id, EmployeeModel employee) {
+        employee.setIdEnterprise(id);
+        repository.save(employee);
     }
 
     public List<EmployeeModel> listEmployeeByEnterprise(Integer id) {
         return repository.findByIdEnterprise(id);
+    }
+
+    public void deleteEmployee(Integer id) {
+        repository.deleteById(id);
     }
 }

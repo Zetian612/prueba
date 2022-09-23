@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,6 +23,11 @@ public class EmployeeModel {
     @JoinColumn(name = "id_enterprise", nullable = false)
     private EnterpriseModel enterprise;
 
+    // relacion con movements
+    // borrado en cascada
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<MovementModel> movements;
+
     // created_at
     @Column(name = "created_at")
     private Date createdAt;
@@ -30,4 +36,8 @@ public class EmployeeModel {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    public void setIdEnterprise(Integer id) {
+        this.enterprise = new EnterpriseModel();
+        this.enterprise.setIdEnterprise(id);
+    }
 }

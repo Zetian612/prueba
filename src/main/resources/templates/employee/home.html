@@ -46,13 +46,19 @@
           <th scope="row" th:text="${employee.idEmployee}"></th>
           <td th:text="${employee.email}"></td>
           <td>
-            <a th:href="@{/employee/{id}/edit(id=${employee.idEmployee})}" class="btn btn-primary">Edit</a>
-            <a th:href="@{/employee/{id}/delete(id=${employee.idEmployee})}" class="btn btn-danger">Delete</a>
+            <a th:href="@{employees/{id}/edit(id=${employee.idEmployee})}" class="btn btn-primary">Edit</a>
+            <form th:action="@{employees/{id}/delete(id=${employee.idEmployee})}" th:method="post">
+              <button type="submit" id="delete-button" class="btn btn-danger">Delete</button>
+            </form>
           </td>
+        </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+<th:block th:replace="fragments/scripts :: scripts"></th:block>
+
 </body>
 </html>
