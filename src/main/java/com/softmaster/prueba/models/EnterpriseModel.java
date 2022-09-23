@@ -37,4 +37,6 @@ public class EnterpriseModel {
 
     @Column(name = "updated_at")
     private Date updatedAt;
+
+
 }

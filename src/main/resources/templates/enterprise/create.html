@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head :: head(title='Enterprise')"></th:block>
+<body>
+<!--  insert navbar  -->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>Enterprise</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-default mb-3 mt-3 shadow-sm p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                    <form th:action="@{/enterprise/create}" th:object="${enterprise}" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" th:field="*{name}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nit" class="form-label">Nit</label>
+                            <input type="number" name="nit" class="form-control" id="nit" th:field="*{nit}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control" id="address" th:field="*{address}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="phone" th:field="*{phone}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

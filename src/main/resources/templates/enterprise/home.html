@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/head :: head(title='Enterprise')"></th:block>
+<body>
+<!--  insert navbar  -->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Enterprise</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a th:href="@{/enterprise/new}" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Nit</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="enterprise : ${enterprises}">
+                    <th scope="row" th:text="${enterprise.idEnterprise}"></th>
+                    <td th:text="${enterprise.name}"></td>
+                    <td th:text="${enterprise.nit}"></td>
+                    <td th:text="${enterprise.address}"></td>
+                    <td th:text="${enterprise.phone}"></td>
+
+                    <td>
+                        <a th:href="@{/enterprise/{id}/employees(id=${enterprise.idEnterprise})}" class="btn btn-primary">Show</a>
+                        <a th:href="@{/enterprise/{id}/edit(id=${enterprise.idEnterprise})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/enterprise/{id}/delete(id=${enterprise.idEnterprise})}" class="btn btn-primary">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -23,4 +23,8 @@ public class EmployeeService {
     public EmployeeModel createEmployee(EmployeeModel employee) {
         return repository.save(employee);
     }
+
+    public List<EmployeeModel> listEmployeeByEnterprise(Integer id) {
+        return repository.findByIdEnterprise(id);
+    }
 }
