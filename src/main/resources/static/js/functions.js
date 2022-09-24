@@ -1,7 +1,7 @@
-const deleteButtons = document.getElementById("delete-button");
-document.addEventListener("DOMContentLoaded", function () {
-    deleteButtons.addEventListener("click", (event) => {
-        event.preventDefault();
+$(document).ready(function() {
+    $(".btn-delete").click(function(e) {
+        e.preventDefault();
+        var form = $("#delete-form");
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-            if (result.isConfirmed) {
-                event.target.parentElement.submit();
+            if (result.value) {
+                form.submit();
             }
         })
     });

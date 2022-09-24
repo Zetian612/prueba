@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="fragments/head :: head(title='Enterprise')"></th:block>
+<th:block th:replace="fragments/head :: head(title='Employees')"></th:block>
 <body>
 <!--  insert navbar  -->
 <div th:replace="fragments/navbar :: navbar"></div>
@@ -8,25 +8,25 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h3>Movements</h3>
+            <h3>Edit employee</h3>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default mb-3 mt-3 shadow-sm p-3 mb-5 bg-body rounded">
                 <div class="card-body">
-                    <form th:action="@{/enterprise/{id}/movements/create(id=${id})}" th:object="${movement}" method="post">
+                    <form th:action="@{update}" th:object="${employee}" method="post">
                         <div class="mb-3">
-                            <label for="concept" class="form-label">Concept</label>
-                            <input type="text" name="concept" class="form-control" id="concept" th:field="*{concept}">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" name="email" class="form-control" id="email" th:field="*{email}"
+                                   th:value="${employee.email}">
                         </div>
                         <div class="mb-3">
-                            <label for="amount" class="form-label">amount</label>
-                            <input type="number" name="amount" class="form-control" id="amount" th:field="*{amount}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="employee">Employee</label>
-                            <input type="number" name="employee" id="employee" th:field="*{employee}">
+                            <label for="enterprise" class="form-label">Enterprise</label>
+                            <select class="form-select" name="enterprise" id="enterprise" disabled>
+                                <option th:each="enterprise : ${enterprises}" th:value="${enterprise.idEnterprise}"
+                                        th:text="${enterprise.name}" th:selected="${enterprise.idEnterprise == employee.enterprise.idEnterprise}">
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="#">

@@ -36,14 +36,16 @@ public class EnterpriseController {
         return new RedirectView("/enterprise");
     }
 
-    @GetMapping("/{id}")
-    public EnterpriseModel getEnterprise(@PathVariable("id") Integer id) {
-        return service.getEnterprise(id);
+    @GetMapping("/{id}/edit")
+    public String editEnterprise(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("enterprise", service.getEnterprise(id));
+        return "enterprise/edit";
     }
-
-    @PutMapping("/{id}")
-    public EnterpriseModel updateEnterprise(@PathVariable("id") Integer id, @RequestBody EnterpriseModel enterprise) {
-        return service.updateEnterprise(id, enterprise);
+    @PostMapping("/{id}/update")
+    public RedirectView updateEnterprise(@PathVariable("id") Integer id, @ModelAttribute EnterpriseModel enterprise, Model model) {
+        model.addAttribute("enterprise");
+        service.updateEnterprise(id, enterprise);
+        return new RedirectView("/enterprise");
     }
 
     //eliminar empresa

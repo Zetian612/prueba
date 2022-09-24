@@ -39,6 +39,7 @@ public class MovementModel {
     private Date updatedAt;
 
     public void setIdEnterprise(Integer id) {
+        this.enterprise = new EnterpriseModel();
         this.enterprise.setIdEnterprise(id);
     }
 }

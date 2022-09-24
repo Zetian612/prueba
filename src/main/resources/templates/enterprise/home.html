@@ -41,8 +41,8 @@
                     <td>
                         <a th:href="@{/enterprise/{id}/employees(id=${enterprise.idEnterprise})}" class="btn btn-primary">Show</a>
                         <a th:href="@{/enterprise/{id}/edit(id=${enterprise.idEnterprise})}" class="btn btn-primary">Edit</a>
-                        <form th:action="@{/enterprise/{id}/delete(id=${enterprise.idEnterprise})}" th:method="post">
-                            <button type="submit" id="delete-button" class="btn btn-danger">Delete</button>
+                        <form th:action="@{/enterprise/{id}/delete(id=${enterprise.idEnterprise})}" th:method="post" id="delete-form">
+                            <button class="btn btn-danger btn-delete">Delete</button>
                         </form>
                     </td>
                 </tr>

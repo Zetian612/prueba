@@ -20,9 +20,9 @@ public class MovementService {
         return repository.findByEnterpriseId(id);
     }
 
-    public MovementModel createMovement(Integer id, MovementModel movement) {
+    public void createMovement(Integer id, MovementModel movement) {
         movement.setIdEnterprise(id);
-        return repository.save(movement);
+        repository.save(movement);
     }
 
     public MovementModel updateMovement(Integer id, Integer idMovement, MovementModel movement) {

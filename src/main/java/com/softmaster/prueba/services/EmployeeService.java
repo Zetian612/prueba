@@ -1,6 +1,7 @@
 package com.softmaster.prueba.services;
 
 import com.softmaster.prueba.models.EmployeeModel;
+import com.softmaster.prueba.models.EnterpriseModel;
 import com.softmaster.prueba.repositories.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,14 @@ public class EmployeeService {
 
     public void deleteEmployee(Integer id) {
         repository.deleteById(id);
+    }
+
+    public EmployeeModel getEmployee(Integer id) {
+        return repository.findById(id).get();
+    }
+
+    public void updateEmployee(Integer id, EmployeeModel employee) {
+        employee.setIdEmployee(id);
+        repository.save(employee);
     }
 }

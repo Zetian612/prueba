@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -23,13 +24,16 @@ public class MovementController {
     }
 
     @GetMapping("/{id}/movements/new")
-    public String newMovement(@PathVariable("id") Integer id) {
+    public String newMovement(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("movement", new MovementModel());
         return "movement/create";
     }
 
     @PostMapping("/{id}/movements/create")
-    public MovementModel createMovement(@PathVariable("id") Integer id, @RequestBody MovementModel movement) {
-        return service.createMovement(id, movement);
+    public RedirectView createMovement(@PathVariable("id") Integer id, @ModelAttribute MovementModel movement, Model model) {
+        model.addAttribute("movement");
+        service.createMovement(id, movement);
+        return new RedirectView("/enterprise/" + id + "/movements");
     }
 
     @PutMapping("/{id}/movements/{idMovement}")

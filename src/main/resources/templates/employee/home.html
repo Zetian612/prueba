@@ -47,8 +47,8 @@
           <td th:text="${employee.email}"></td>
           <td>
             <a th:href="@{employees/{id}/edit(id=${employee.idEmployee})}" class="btn btn-primary">Edit</a>
-            <form th:action="@{employees/{id}/delete(id=${employee.idEmployee})}" th:method="post">
-              <button type="submit" id="delete-button" class="btn btn-danger">Delete</button>
+            <form th:action="@{employees/{id}/delete(id=${employee.idEmployee})}" th:method="post" id="delete-form">
+              <button class="btn btn-danger btn-delete">Delete</button>
             </form>
           </td>
         </tr>

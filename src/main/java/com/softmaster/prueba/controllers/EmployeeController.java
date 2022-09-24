@@ -2,13 +2,12 @@ package com.softmaster.prueba.controllers;
 
 import com.softmaster.prueba.models.EmployeeModel;
 import com.softmaster.prueba.services.EmployeeService;
+import com.softmaster.prueba.services.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/enterprise")
@@ -16,6 +15,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService service;
+    @Autowired
+    private EnterpriseService enterpriseService;
 
     @GetMapping("/{id}/employees")
     public String enterpriseEmployees(@PathVariable("id") Integer id, Model model) {
@@ -34,6 +35,20 @@ public class EmployeeController {
         model.addAttribute("employee");
         service.createEmployee(id, employee);
         return new RedirectView("/enterprise/" + id + "/employees");
+    }
+
+    @GetMapping("/{idEnterprise}/employees/{id}/edit")
+    public String editEmployee(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("employee", service.getEmployee(id));
+        model.addAttribute("enterprises", enterpriseService.listAllEnterprise());
+        return "employee/edit";
+    }
+
+    @PostMapping("/{idEnterprise}/employees/{id}/update")
+    public RedirectView updateEmployee(@PathVariable("idEnterprise") Integer idEnterprise, @PathVariable("id") Integer id, @ModelAttribute EmployeeModel employee, Model model) {
+        model.addAttribute("employee");
+        service.updateEmployee(id, employee);
+        return new RedirectView("/enterprise/" + idEnterprise + "/employees");
     }
 
     @PostMapping("/{idEnterprise}/employees/{id}/delete")
